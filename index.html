@@ -938,6 +938,21 @@
         }
 
         /* Portfolio */
+        .showreel {
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+        }
+
+        .showreel video {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            background: var(--black);
+            border-radius: 2px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
         .portfolio-section {
             background: var(--white);
         }
@@ -1263,6 +1278,12 @@
             <div class="section-eyebrow">Tidigare arbeten</div>
             <h2 class="section-title">Från ovan</h2>
             <p class="section-description">Ett urval av bilder jag har tagit – i stan, i skärgården och på landet. Klicka på en bild för att se den i full upplösning.</p>
+        </div>
+
+        <div class="showreel fade-in">
+            <video controls playsinline preload="none" poster="showreel-poster.jpg" width="1920" height="1080" aria-label="Vidvy Studio showreel – drönarfilm från Stockholm och skärgården">
+                <source src="showreel.mp4" type="video/mp4">
+            </video>
         </div>
 
         <div class="portfolio-grid">
