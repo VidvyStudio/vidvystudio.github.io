@@ -35,9 +35,8 @@
         "priceRange": "Från 200 kr"
     }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="fonts/fonts.css">
     <style>
         :root {
             --green: #2D5F3F;
@@ -761,6 +760,37 @@
             margin-bottom: 1rem;
         }
 
+        footer p + p {
+            margin-top: 0.4rem;
+        }
+
+        .footer-info {
+            margin-top: 1.5rem;
+        }
+
+        .footer-info span {
+            white-space: nowrap;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.75rem;
+            margin: 1.5rem 0;
+        }
+
         /* Hero price link */
         .hero-price {
             display: inline-flex;
@@ -899,6 +929,18 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2rem;
+        }
+
+        .pricing-note {
+            max-width: 1100px;
+            margin: 2rem auto 0;
+            color: var(--gray-light);
+            font-size: 0.95rem;
+        }
+
+        .pricing-note a {
+            color: var(--green);
+            font-weight: 500;
         }
 
         .price-card {
@@ -1240,7 +1282,7 @@
                 <ul class="service-features">
                     <li>Filmar platsen före eller under</li>
                     <li>Redigerade klipp levereras</li>
-                    <li>EASA-certifierad operatör</li>
+                    <li>EASA-registrerad operatör</li>
                 </ul>
                 <a class="service-link" href="#kontakt">Be om offert</a>
             </article>
@@ -1258,7 +1300,7 @@
             <div class="price-card fade-in">
                 <h3>Flygfoto</h3>
                 <div class="price"><span class="from">från</span> 500 kr</div>
-                <p>5–10 bilder från luften av din lokal, fastighet eller ditt område – direkt från drönaren och levererade på plats. Redigerade bilder och uppdrag utanför Stockholm kostar extra.</p>
+                <p>5–10 bilder från luften av din lokal, fastighet eller ditt område. Du får dem när spridningstillståndet är klart, eller direkt på plats om motivet inte kräver tillstånd. Redigerade bilder och uppdrag utanför Stockholm kostar extra.</p>
             </div>
             <div class="price-card fade-in">
                 <h3>Drönarfilm</h3>
@@ -1271,6 +1313,7 @@
                 <p>Klippning, färgkorrigering och musik. Gäller både material du redan har filmat och längre drönarfilmer, där redigeringen räknas in i priset.</p>
             </div>
         </div>
+        <p class="pricing-note fade-in">Alla priser är slutpriser, ingen moms tillkommer. Hur bokning, betalning och leverans går till står i mina <a href="villkor.html">villkor</a>.</p>
     </section>
 
     <section id="arbeten" class="portfolio-section">
@@ -1531,7 +1574,7 @@
             <div class="process-step fade-in">
                 <div class="step-number">04</div>
                 <h4>Leverans</h4>
-                <p>Materialet redigeras och levereras inom en vecka.</p>
+                <p>Du får en förhandsversion inom en vecka. Det färdiga materialet skickar jag när det är betalt och har spridningstillstånd.</p>
             </div>
         </div>
     </section>
@@ -1617,7 +1660,16 @@
 
     <footer>
         <div class="logo">Vidvy Studio</div>
-        <p>© 2026 Vidvy Studio — Drönarfilm & flygfoto i Stockholm</p>
+        <p>Drönarfilm &amp; flygfoto i Stockholm</p>
+        <div class="footer-info">
+            <p><span>Enskild firma som drivs av Arvid</span> · <span>Rosenlundsgatan 32D, 118 53 Stockholm</span> · <a href="mailto:kontakt@vidvystudio.se">kontakt@vidvystudio.se</a></p>
+            <p><span>Godkänd för F-skatt</span> · <span>Inte momsregistrerad,</span> <span>ingen moms tillkommer på priserna</span></p>
+        </div>
+        <ul class="footer-links">
+            <li><a href="integritetspolicy.html">Integritetspolicy</a></li>
+            <li><a href="villkor.html">Villkor</a></li>
+        </ul>
+        <p>© 2026 Vidvy Studio</p>
     </footer>
 
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildvisning">
