@@ -171,6 +171,44 @@ footer a:hover {
     text-decoration: underline;
 }
 
+.footer-social {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+}
+
+.footer-social a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.footer-social a:hover {
+    background: var(--green-bright);
+    border-color: var(--green-bright);
+    color: var(--black);
+    text-decoration: none;
+}
+
+.footer-social a:focus-visible {
+    outline: 2px solid var(--green-bright);
+    outline-offset: 3px;
+}
+
+.footer-social svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
 .footer-links {
     list-style: none;
     display: flex;
