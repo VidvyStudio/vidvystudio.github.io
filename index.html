@@ -109,6 +109,25 @@
             color: var(--green);
         }
 
+        .nav-legal a {
+            color: var(--gray-light);
+        }
+
+        .nav-legal-first {
+            padding-left: 2rem;
+            border-left: 1px solid rgba(45, 95, 63, 0.2);
+        }
+
+        @media (max-width: 1180px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-legal-first {
+                padding-left: 1.5rem;
+            }
+        }
+
         /* Hero Section */
         .hero {
             margin-top: 80px;
@@ -1313,6 +1332,8 @@
                 <li><a href="#brollop">Bröllop</a></li>
                 <li><a href="#om">Om</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
+                <li class="nav-legal nav-legal-first"><a href="villkor.html">Villkor</a></li>
+                <li class="nav-legal"><a href="integritetspolicy.html">Integritet</a></li>
             </ul>
         </div>
     </nav>
