@@ -1,0 +1,273 @@
+/* Leveranssidor till kunder. Bygger på undersida.css (meny, sidfot, färger). */
+
+main.leverans {
+    max-width: 1180px;
+    padding: 4.5rem 5% 6rem;
+}
+
+.lev-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    margin-bottom: 2.25rem;
+}
+
+.lev-head h1 {
+    margin-bottom: 0.6rem;
+}
+
+.lev-dates {
+    color: var(--gray-light);
+    font-size: 0.95rem;
+}
+
+.lev-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--green);
+    font-size: 0.88rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.lev-status::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green-light);
+}
+
+.lev-status.is-preview {
+    background: transparent;
+    border: 1px solid rgba(45, 95, 63, 0.3);
+}
+
+.lev-status.is-preview::before {
+    background: transparent;
+    border: 2px solid var(--green-light);
+    width: 6px;
+    height: 6px;
+}
+
+.lev-greeting {
+    max-width: 46rem;
+    font-size: 1.15rem;
+    margin-bottom: 2.5rem;
+}
+
+.lev-media {
+    background: var(--black);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.lev-media video,
+.lev-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: var(--black);
+}
+
+.lev-media + .lev-media {
+    margin-top: 1.25rem;
+}
+
+.lev-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.lev-card {
+    padding: 2.25rem;
+    border: 1px solid rgba(45, 95, 63, 0.14);
+    background: #FFFFFF;
+}
+
+.lev-card h2 {
+    margin: 0 0 1.1rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+}
+
+/* Den gröna rutan med filer och nedladdning, samma grön som startsidan */
+.lev-card.is-main {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--white);
+}
+
+.lev-card.is-main h2 {
+    color: var(--green-bright);
+}
+
+.lev-card.is-main p {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.lev-card.is-main a:not(.lev-button) {
+    color: var(--white);
+}
+
+main .lev-files {
+    list-style: none;
+    margin: 0 0 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+main .lev-files li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--white);
+    line-height: 1.45;
+}
+
+.lev-files .file-name {
+    font-weight: 500;
+}
+
+.lev-files .file-meta {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.lev-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    width: 100%;
+    padding: 1.15rem 2rem;
+    border-radius: 2px;
+    background: var(--white);
+    color: var(--green);
+    font-weight: 600;
+    font-size: 1.02rem;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+main a.lev-button {
+    color: var(--green);
+}
+
+.lev-button:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.lev-button:focus-visible {
+    outline: 2px solid var(--green-bright);
+    outline-offset: 3px;
+}
+
+.lev-button svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.lev-note {
+    margin-top: 1.1rem;
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+.lev-code {
+    display: inline-block;
+    margin-left: 0.25rem;
+    padding: 0.1rem 0.5rem;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    user-select: all;
+}
+
+main .lev-facts {
+    list-style: none;
+    margin: 0;
+}
+
+main .lev-facts li {
+    position: relative;
+    padding-left: 1.3rem;
+    font-size: 0.98rem;
+    line-height: 1.7;
+}
+
+main .lev-facts li + li {
+    margin-top: 0.85rem;
+}
+
+.lev-facts li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-light);
+}
+
+@media (max-width: 860px) {
+    .lev-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    main.leverans {
+        padding: 2.75rem 5% 4rem;
+    }
+
+    .lev-head {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .lev-greeting {
+        font-size: 1.05rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .lev-card {
+        padding: 1.6rem 1.35rem;
+    }
+
+    main .lev-files li {
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    .lev-files .file-meta {
+        text-align: left;
+        white-space: normal;
+    }
+}
+
+.lev-button-gap {
+    margin-top: 1.5rem;
+}

@@ -1,0 +1,26 @@
+{
+    "kund": "Exempelkund",
+    "slug": "exempel",
+    "rubrik": "Sverige från ovan",
+    "datumrad": "Filmat sommaren 2026 · Levererat 17 november 2026",
+    "namn": "Anna",
+    "status": "klar",
+    "media": [
+        {
+            "typ": "video",
+            "src": "/showreel-sverige-fran-ovan.mp4",
+            "poster": "/showreel-sverige-fran-ovan-poster.jpg",
+            "titel": "Sverige från ovan"
+        }
+    ],
+    "filer": [
+        {"namn": "Huvudfilm", "detalj": "4K HDR · MP4"},
+        {"namn": "Kortversion, 15 sekunder", "detalj": "4K HDR · MP4"},
+        {"namn": "Stillbilder", "detalj": "12 st · JPG"}
+    ],
+    "nedladdning": {
+        "url": "https://www.swisstransfer.com/",
+        "tjanst": "SwissTransfer",
+        "giltig_till": "17 december 2026"
+    }
+}
