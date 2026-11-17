@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+    Mall för leveranssidor. Filen börjar med _ så att GitHub Pages inte publicerar den.
+    Fylls i av leverans/_verktyg/ny_leverans.py, som också lösenordsskyddar sidan.
+    Lägg aldrig in en oskyddad sida med nedladdningslänk i repot.
+-->
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{SIDTITEL}} | Vidvy Studio</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="no-referrer">
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+    <link rel="apple-touch-icon" href="/icon-180.png">
+    <link rel="preload" href="/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/fonts/fonts.css">
+    <link rel="stylesheet" href="/undersida.css">
+    <link rel="stylesheet" href="/leverans/leverans.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a class="logo" href="/">Vidvy Studio</a>
+            <ul class="nav-links">
+                <li class="nav-doc"><a href="/villkor.html">Villkor</a></li>
+                <li><a class="nav-back" href="mailto:kontakt@vidvystudio.se">Kontakta mig</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="leverans">
+        <header class="lev-head">
+            <div>
+                <div class="eyebrow">{{OVERRAD}}</div>
+                <h1>{{RUBRIK}}</h1>
+                <p class="lev-dates">{{DATUMRAD}}</p>
+            </div>
+            {{STATUS}}
+        </header>
+
+        <p class="lead lev-greeting">{{HALSNING}}</p>
+
+{{MEDIA}}
+
+        <div class="lev-grid">
+{{HUVUDRUTA}}
+
+            <section class="lev-card" aria-labelledby="bra-att-veta">
+                <h2 id="bra-att-veta">Bra att veta</h2>
+                <ul class="lev-facts">
+{{FAKTA}}
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <a class="logo" href="/">Vidvy Studio</a>
+        <p>Drönarfilm &amp; flygfoto i Stockholm</p>
+        <div class="footer-info">
+            <p><a href="mailto:kontakt@vidvystudio.se">kontakt@vidvystudio.se</a> · <span>Godkänd för F-skatt</span></p>
+        </div>
+        <ul class="footer-links">
+            <li><a href="/villkor.html">Villkor</a></li>
+            <li><a href="/integritetspolicy.html">Integritetspolicy</a></li>
+        </ul>
+        <p>© {{AR}} Vidvy Studio</p>
+    </footer>
+</body>
+</html>
