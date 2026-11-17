@@ -165,7 +165,7 @@ def fakta(cfg):
             "Spara en egen kopia av filerna. Jag sparar inte materialet hur länge som helst.",
             'Du får använda materialet fritt, privat eller i din verksamhet. Mer om det står i '
             '<a href="/villkor.html#ratt-att-anvanda-materialet">villkoren</a>.',
-            "Lägger du upp filmen får du gärna tagga @vidvystudio.",
+            "Lägger du upp filmen går det bra att tagga @vidvystudio.",
             'Frågor? Svara på mejlet eller skriv till '
             '<a href="mailto:kontakt@vidvystudio.se">kontakt@vidvystudio.se</a>.',
         ]
