@@ -1971,6 +1971,8 @@
                 e.preventDefault();
                 button.disabled = true;
                 status.textContent = 'Skickar...';
+                var firstName = form.elements.namedItem('name').value.trim().split(/\s+/)[0];
+                var email = form.elements.namedItem('email').value.trim();
                 fetch(form.action, {
                     method: 'POST',
                     headers: { 'Accept': 'application/json' },
@@ -1980,7 +1982,9 @@
                 .then(function (data) {
                     if (data.success) {
                         form.reset();
-                        status.textContent = 'Tack! Meddelandet är skickat, jag hör av mig snart.';
+                        status.textContent = (firstName ? 'Tack, ' + firstName + '!' : 'Tack!') +
+                            ' Jag har fått ditt meddelande och svarar till ' + email +
+                            ', oftast inom ett par timmar.';
                     } else {
                         status.textContent = 'Något gick fel. Mejla gärna direkt till kontakt@vidvystudio.se.';
                     }
