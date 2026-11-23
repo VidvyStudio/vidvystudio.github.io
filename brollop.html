@@ -285,6 +285,7 @@
             const boxImg = document.getElementById('lightbox-img');
             const fullLink = document.getElementById('lightbox-full');
             const boxTitle = document.getElementById('lightbox-title');
+            const buyBtn = document.getElementById('lightbox-buy');
             let current = 0;
 
             function show(i) {
@@ -297,6 +298,8 @@
                 fullLink.href = item.getAttribute('href');
                 const caption = item.querySelector('.portfolio-caption');
                 boxTitle.textContent = caption ? caption.textContent.trim() : '';
+                // Kundbilder säljs inte vidare: ingen Köp bilden-knapp
+                buyBtn.style.display = item.dataset.salj === 'nej' ? 'none' : '';
                 box.classList.add('open');
                 document.body.style.overflow = 'hidden';
             }
@@ -325,7 +328,7 @@
                 });
             }
 
-            document.getElementById('lightbox-buy').addEventListener('click', () => {
+            buyBtn.addEventListener('click', () => {
                 const item = items[current];
                 const thumb = item.querySelector('img');
                 const title = boxTitle.textContent;
