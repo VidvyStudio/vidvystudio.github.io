@@ -6,9 +6,6 @@ on:
   schedule:
     - cron: "17 5 * * 1"   # måndagar 06.17 svensk vintertid (07.17 sommartid)
   workflow_dispatch:
-  push:                    # tillfälligt: provkörning på förslagsgrenen
-    branches: [forslag-malgrupp-och-fragor]
-    paths: [.github/workflows/handlaggningstid.yml, _verktyg/handlaggningstid.py]
 
 permissions:
   contents: write
