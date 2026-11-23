@@ -1,0 +1,40 @@
+# Hämtar Lantmäteriets handläggningstid för spridningstillstånd varje måndag
+# och uppdaterar texten på hemsidan. Kan också startas för hand under Actions.
+name: Handläggningstid
+
+on:
+  schedule:
+    - cron: "17 5 * * 1"   # måndagar 06.17 svensk vintertid (07.17 sommartid)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: handlaggningstid
+  cancel-in-progress: false
+
+jobs:
+  uppdatera:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Hämta tiden och uppdatera sidorna
+        run: python3 _verktyg/handlaggningstid.py
+
+      - name: Spara och publicera om något ändrats
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet; then
+            echo "Ingen ändring."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Uppdatera Lantmäteriets handläggningstid"
+          git push
+          # Be GitHub Pages bygga om sidan (ofarligt om den redan gör det)
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
