@@ -45,6 +45,11 @@
         </div>
         <div class="hero-image">
             <img src="galleri-villa-pa-berget.jpg" srcset="maklare-hero-1600.jpg 1600w, maklare-hero-2400.jpg 2400w, galleri-villa-pa-berget.jpg 3840w" sizes="(max-width: 1000px) 140vw, (min-aspect-ratio: 3/1) 45vw, 135vh" alt="Villa i flera plan på en bergssluttning med trädgård och terrasser, fotograferad med drönare" style="object-position: center">
+            <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                <source src="maklare-loop-av1.webm" type='video/webm; codecs="av01.0.08M.10"'>
+                <source src="maklare-loop-hevc.mp4" type='video/mp4; codecs="hvc1"'>
+                <source src="maklare-loop.mp4" type="video/mp4">
+            </video>
         </div>
     </section>
 
@@ -275,6 +280,15 @@
     </div>
 
     <script>
+        // Tona in filmen i toppen först när den faktiskt spelas
+        (function () {
+            const heroVideo = document.querySelector('.hero-video');
+            if (!heroVideo) return;
+            const show = () => heroVideo.classList.add('is-playing');
+            if (!heroVideo.paused && heroVideo.readyState > 2) show();
+            heroVideo.addEventListener('playing', show);
+        })();
+
         // Portfolio lightbox
         (function () {
             const all = Array.from(document.querySelectorAll('.portfolio-item'));
