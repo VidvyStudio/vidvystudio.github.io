@@ -1685,7 +1685,7 @@
                 <img src="galleri-morgondimma-vattnet-liten.jpg" alt="Morgondimma över vattnet och ett kryssningsfartyg vid kajen" loading="lazy" width="900" height="1200">
                 <span class="portfolio-caption">Morgondimma över vattnet</span>
             </a>
-            <a class="portfolio-item is-hidden" href="galleri-villa-pa-berget.jpg">
+            <a class="portfolio-item is-hidden" href="galleri-villa-pa-berget.jpg" data-salj="nej">
                 <img src="galleri-villa-pa-berget-liten.jpg" alt="Villa i flera plan på en bergssluttning, fotograferad med drönare" loading="lazy" width="1200" height="900">
                 <span class="portfolio-caption">Villa på berget</span>
             </a>
@@ -2018,6 +2018,7 @@
             const boxImg = document.getElementById('lightbox-img');
             const fullLink = document.getElementById('lightbox-full');
             const boxTitle = document.getElementById('lightbox-title');
+            const buyBtn = document.getElementById('lightbox-buy');
             let current = 0;
 
             function show(i) {
@@ -2030,6 +2031,8 @@
                 fullLink.href = item.getAttribute('href');
                 const caption = item.querySelector('.portfolio-caption');
                 boxTitle.textContent = caption ? caption.textContent.trim() : '';
+                // Kundbilder säljs inte vidare: ingen Köp bilden-knapp
+                buyBtn.style.display = item.dataset.salj === 'nej' ? 'none' : '';
                 box.classList.add('open');
                 document.body.style.overflow = 'hidden';
             }
@@ -2058,7 +2061,7 @@
                 });
             }
 
-            document.getElementById('lightbox-buy').addEventListener('click', () => {
+            buyBtn.addEventListener('click', () => {
                 const item = items[current];
                 const thumb = item.querySelector('img');
                 const title = boxTitle.textContent;
