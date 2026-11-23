@@ -226,6 +226,23 @@ nav .container {
     transform: scale(1.05);
 }
 
+/* Stående toppbild (bröllopssidan): bildrutan är 4:5, samma beskärning som kyrkbilden hade på startsidan */
+.hero.hero-staende {
+    grid-template-columns: 1fr min(50%, calc((100vh - 80px - 2.5rem) * 0.8));
+    grid-template-columns: 1fr min(50%, calc((100svh - 80px - 2.5rem) * 0.8));
+}
+
+@media (max-width: 968px) {
+    .hero.hero-staende {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-staende .hero-image {
+        min-height: 0;
+        height: min(112vw, 70vh);
+    }
+}
+
 .hero-image-placeholder {
     position: absolute;
     top: 50%;
