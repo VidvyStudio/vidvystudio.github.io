@@ -801,10 +801,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .form-row.is-three {
-            grid-template-columns: 1.1fr 1fr 1fr;
-        }
-
         .form-optional {
             text-transform: none;
             letter-spacing: 0;
@@ -933,8 +929,7 @@
         }
 
         @media (max-width: 640px) {
-            .form-row,
-            .form-row.is-three {
+            .form-row {
                 grid-template-columns: 1fr;
             }
         }
@@ -1949,7 +1944,7 @@
                         <input type="email" id="cf-email" name="email" autocomplete="email" required>
                     </div>
                 </div>
-                <div class="form-row is-three">
+                <div class="form-row">
                     <div class="form-field">
                         <label for="cf-type">Typ av uppdrag<span class="form-optional">(frivilligt)</span></label>
                         <select id="cf-type" name="uppdrag">
@@ -1966,10 +1961,6 @@
                     <div class="form-field">
                         <label for="cf-place">Plats<span class="form-optional">(frivilligt)</span></label>
                         <input type="text" id="cf-place" name="plats" placeholder="T.ex. Södermalm">
-                    </div>
-                    <div class="form-field">
-                        <label for="cf-date">Datum<span class="form-optional">(frivilligt)</span></label>
-                        <input type="text" id="cf-date" name="datum" placeholder="T.ex. i maj">
                     </div>
                 </div>
                 <div class="form-picked" id="form-picked" hidden>
