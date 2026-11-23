@@ -1101,6 +1101,11 @@ footer a:hover {
     background: var(--accent);
 }
 
+/* Vit variant när sektionen före redan är grön */
+.pricing-section.is-plain {
+    background: var(--white);
+}
+
 .pricing-grid {
     max-width: 1100px;
     margin: 0 auto;
