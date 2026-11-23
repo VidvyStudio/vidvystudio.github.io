@@ -31,8 +31,19 @@
         "logo": "https://vidvystudio.se/icon-192.png",
         "image": "https://vidvystudio.se/hero-dimhav.jpg",
         "email": "kontakt@vidvystudio.se",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rosenlundsgatan 32D",
+            "postalCode": "118 53",
+            "addressLocality": "Stockholm",
+            "addressCountry": "SE"
+        },
         "areaServed": "Stockholm",
-        "priceRange": "Från 200 kr"
+        "priceRange": "Från 200 kr",
+        "sameAs": [
+            "https://www.instagram.com/vidvystudio/",
+            "https://www.tiktok.com/@vidvystudio"
+        ]
     }
     </script>
     <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -790,7 +801,19 @@
             margin-bottom: 0.5rem;
         }
 
+        .form-row.is-three {
+            grid-template-columns: 1.1fr 1fr 1fr;
+        }
+
+        .form-optional {
+            text-transform: none;
+            letter-spacing: 0;
+            opacity: 0.7;
+            margin-left: 0.3rem;
+        }
+
         .form-field input,
+        .form-field select,
         .form-field textarea {
             width: 100%;
             background: rgba(255, 255, 255, 0.1);
@@ -807,12 +830,79 @@
             resize: vertical;
         }
 
+        .form-field select {
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            padding-right: 2.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FAFAFA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.9rem center;
+            background-size: 16px;
+        }
+
+        .form-field select option {
+            color: var(--black);
+            background: var(--white);
+        }
+
+        .form-picked {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.6rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 2px;
+        }
+
+        .form-picked[hidden] {
+            display: none;
+        }
+
+        .form-picked img {
+            width: 84px;
+            height: 63px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .form-picked p {
+            flex: 1;
+            font-size: 0.95rem;
+            line-height: 1.45;
+        }
+
+        .form-picked small {
+            display: block;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .form-picked button {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            line-height: 1;
+            padding: 0.25rem 0.6rem;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        .form-picked button:hover {
+            opacity: 1;
+        }
+
         .form-field input::placeholder,
         .form-field textarea::placeholder {
             color: rgba(255, 255, 255, 0.5);
         }
 
         .form-field input:focus,
+        .form-field select:focus,
         .form-field textarea:focus {
             outline: none;
             border-color: var(--white);
@@ -843,7 +933,8 @@
         }
 
         @media (max-width: 640px) {
-            .form-row {
+            .form-row,
+            .form-row.is-three {
                 grid-template-columns: 1fr;
             }
         }
@@ -1230,7 +1321,7 @@
             align-items: center;
             justify-content: center;
             z-index: 2000;
-            padding: 4rem 1rem;
+            padding: 4rem 1rem 5.5rem;
         }
 
         .lightbox.open {
@@ -1262,11 +1353,49 @@
         .lightbox-prev { left: 0.5rem; top: 50%; transform: translateY(-50%); }
         .lightbox-next { right: 0.5rem; top: 50%; transform: translateY(-50%); }
 
-        .lightbox-full {
+        .lightbox-bar {
             position: absolute;
-            bottom: 1.25rem;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 1rem;
+            right: 1rem;
+            bottom: 1.1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem 1.75rem;
+            text-align: center;
+        }
+
+        .lightbox-title {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .lightbox .lightbox-buy {
+            position: static;
+            transform: none;
+            opacity: 1;
+            background: var(--green);
+            color: var(--white);
+            font: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 0.6rem 1.5rem;
+            border-radius: 2px;
+            transition: background 0.2s ease;
+        }
+
+        .lightbox .lightbox-buy:hover {
+            background: var(--green-light);
+        }
+
+        .lightbox .lightbox-buy:focus-visible {
+            outline: 2px solid var(--green-bright);
+            outline-offset: 3px;
+        }
+
+        .lightbox-full {
             color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
             text-decoration: none;
@@ -1489,7 +1618,7 @@
         <div class="section-header fade-in">
             <div class="section-eyebrow">Tidigare arbeten</div>
             <h2 class="section-title">Från ovan</h2>
-            <p class="section-description">Ett urval av bilder jag har tagit – i stan, i skärgården och på landet. Klicka på en bild för att se den i full upplösning.</p>
+            <p class="section-description">Ett urval av bilder jag har tagit – i stan, i skärgården och på landet. Klicka på en bild för att se den större. Alla bilder går också att köpa, till exempel till en hemsida, en annons eller en trycksak.</p>
         </div>
 
         <div class="showreel fade-in">
@@ -1819,6 +1948,35 @@
                         <input type="email" id="cf-email" name="email" autocomplete="email" required>
                     </div>
                 </div>
+                <div class="form-row is-three">
+                    <div class="form-field">
+                        <label for="cf-type">Typ av uppdrag<span class="form-optional">(frivilligt)</span></label>
+                        <select id="cf-type" name="uppdrag">
+                            <option value="">Välj</option>
+                            <option>Flygfoto</option>
+                            <option>Drönarfilm</option>
+                            <option>Drönarfilm och flygfoto</option>
+                            <option>Videoredigering</option>
+                            <option>Bröllop</option>
+                            <option>Köpa en befintlig bild</option>
+                            <option>Annat</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="cf-place">Plats<span class="form-optional">(frivilligt)</span></label>
+                        <input type="text" id="cf-place" name="plats" placeholder="T.ex. Södermalm">
+                    </div>
+                    <div class="form-field">
+                        <label for="cf-date">Datum<span class="form-optional">(frivilligt)</span></label>
+                        <input type="text" id="cf-date" name="datum" placeholder="T.ex. i maj">
+                    </div>
+                </div>
+                <div class="form-picked" id="form-picked" hidden>
+                    <img id="form-picked-img" alt="">
+                    <p><small>Bild du frågar om</small><span id="form-picked-title"></span></p>
+                    <button type="button" id="form-picked-remove" aria-label="Ta bort bilden från meddelandet">×</button>
+                    <input type="hidden" name="bild" id="form-picked-input" value="" disabled>
+                </div>
                 <div class="form-field">
                     <label for="cf-message">Meddelande</label>
                     <textarea id="cf-message" name="message" placeholder="Berätta kort om ditt projekt" required></textarea>
@@ -1852,7 +2010,11 @@
         <button class="lightbox-prev" id="lightbox-prev" aria-label="Föregående bild">‹</button>
         <img id="lightbox-img" alt="">
         <button class="lightbox-next" id="lightbox-next" aria-label="Nästa bild">›</button>
-        <a class="lightbox-full" id="lightbox-full" href="#" target="_blank" rel="noopener">Öppna i full storlek</a>
+        <div class="lightbox-bar">
+            <span class="lightbox-title" id="lightbox-title"></span>
+            <button type="button" class="lightbox-buy" id="lightbox-buy">Köp bilden</button>
+            <a class="lightbox-full" id="lightbox-full" href="#" target="_blank" rel="noopener">Öppna i full storlek</a>
+        </div>
     </div>
 
     <script>
@@ -1864,6 +2026,7 @@
             const box = document.getElementById('lightbox');
             const boxImg = document.getElementById('lightbox-img');
             const fullLink = document.getElementById('lightbox-full');
+            const boxTitle = document.getElementById('lightbox-title');
             let current = 0;
 
             function show(i) {
@@ -1874,6 +2037,8 @@
                 boxImg.src = item.getAttribute('href');
                 boxImg.alt = thumb ? thumb.alt : '';
                 fullLink.href = item.getAttribute('href');
+                const caption = item.querySelector('.portfolio-caption');
+                boxTitle.textContent = caption ? caption.textContent.trim() : '';
                 box.classList.add('open');
                 document.body.style.overflow = 'hidden';
             }
@@ -1901,6 +2066,14 @@
                     else more.querySelector('span').textContent = '(' + left + ')';
                 });
             }
+
+            document.getElementById('lightbox-buy').addEventListener('click', () => {
+                const item = items[current];
+                const thumb = item.querySelector('img');
+                const title = boxTitle.textContent;
+                close();
+                if (window.vidvyPickImage) window.vidvyPickImage(title, thumb ? thumb.getAttribute('src') : '');
+            });
 
             document.getElementById('lightbox-close').addEventListener('click', close);
             document.getElementById('lightbox-prev').addEventListener('click', () => show(current - 1));
@@ -1967,6 +2140,50 @@
             if (!form) return;
             var status = document.getElementById('form-status');
             var button = form.querySelector('button[type="submit"]');
+            var subject = form.elements.namedItem('subject');
+            var defaultSubject = subject.value;
+            var type = document.getElementById('cf-type');
+            var message = document.getElementById('cf-message');
+            var picked = document.getElementById('form-picked');
+            var pickedImg = document.getElementById('form-picked-img');
+            var pickedTitle = document.getElementById('form-picked-title');
+            var pickedInput = document.getElementById('form-picked-input');
+
+            function clearPicked() {
+                picked.hidden = true;
+                pickedInput.disabled = true;
+                pickedInput.value = '';
+                subject.value = defaultSubject;
+            }
+
+            // Called from the gallery when someone clicks "Köp bilden"
+            window.vidvyPickImage = function (title, src) {
+                pickedTitle.textContent = title;
+                pickedImg.src = src;
+                pickedInput.value = title;
+                pickedInput.disabled = false;
+                picked.hidden = false;
+                subject.value = 'Bildförfrågan: ' + title + ' (vidvystudio.se)';
+                type.value = 'Köpa en befintlig bild';
+                if (!message.value.trim() || message.dataset.prefilled === message.value) {
+                    message.value = 'Jag är intresserad av bilden "' + title + '".\nDen ska användas till: ';
+                    message.dataset.prefilled = message.value;
+                }
+                status.textContent = '';
+                var nav = document.querySelector('nav');
+                var top = form.getBoundingClientRect().top + window.scrollY - (nav ? nav.offsetHeight : 0) - 24;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+                setTimeout(function () {
+                    var name = document.getElementById('cf-name');
+                    (name.value ? message : name).focus({ preventScroll: true });
+                }, 600);
+            };
+
+            document.getElementById('form-picked-remove').addEventListener('click', function () {
+                clearPicked();
+                if (type.value === 'Köpa en befintlig bild') type.value = '';
+                if (message.dataset.prefilled === message.value) message.value = '';
+            });
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 button.disabled = true;
@@ -1982,6 +2199,8 @@
                 .then(function (data) {
                     if (data.success) {
                         form.reset();
+                        clearPicked();
+                        delete message.dataset.prefilled;
                         status.textContent = (firstName ? 'Tack, ' + firstName + '!' : 'Tack!') +
                             ' Jag har fått ditt meddelande och svarar till ' + email +
                             ', oftast inom ett par timmar.';

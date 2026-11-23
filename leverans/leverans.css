@@ -271,3 +271,54 @@ main .lev-facts li + li {
 .lev-button-gap {
     margin-top: 1.5rem;
 }
+
+/* Rutan som ber om ett omdöme på Google (bara på färdiga leveranser) */
+.lev-review {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    padding: 2rem 2.25rem;
+    background: var(--accent);
+    border: 1px solid rgba(45, 95, 63, 0.14);
+}
+
+.lev-review h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    color: var(--green);
+}
+
+.lev-review p {
+    max-width: 40rem;
+    margin: 0;
+}
+
+.lev-button.lev-button-green {
+    width: auto;
+    flex-shrink: 0;
+    background: var(--green);
+    color: var(--white);
+}
+
+main a.lev-button.lev-button-green {
+    color: var(--white);
+}
+
+.lev-button.lev-button-green:hover {
+    background: var(--green-light);
+}
+
+@media (max-width: 760px) {
+    .lev-review {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1.75rem;
+    }
+
+    .lev-button.lev-button-green {
+        width: 100%;
+    }
+}
