@@ -45,6 +45,11 @@
         </div>
         <div class="hero-image">
             <img src="galleri-hostljus-djurgarden.jpg" srcset="foretag-hero-1600.jpg 1600w, foretag-hero-2400.jpg 2400w, galleri-hostljus-djurgarden.jpg 3840w" sizes="(max-width: 1000px) 140vw, (min-aspect-ratio: 3/1) 45vw, 135vh" alt="Röd byggnad i höstljus med utsikt över vattnet mot Gröna Lund" style="object-position: center">
+            <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+                <source src="foretag-loop-av1.webm" type='video/webm; codecs="av01.0.08M.10"'>
+                <source src="foretag-loop-hevc.mp4" type='video/mp4; codecs="hvc1"'>
+                <source src="foretag-loop.mp4" type="video/mp4">
+            </video>
         </div>
     </section>
 
@@ -286,6 +291,15 @@
     </div>
 
     <script>
+        // Tona in filmen i toppen först när den faktiskt spelas
+        (function () {
+            const heroVideo = document.querySelector('.hero-video');
+            if (!heroVideo) return;
+            const show = () => heroVideo.classList.add('is-playing');
+            if (!heroVideo.paused && heroVideo.readyState > 2) show();
+            heroVideo.addEventListener('playing', show);
+        })();
+
         // Portfolio lightbox
         (function () {
             const all = Array.from(document.querySelectorAll('.portfolio-item'));
