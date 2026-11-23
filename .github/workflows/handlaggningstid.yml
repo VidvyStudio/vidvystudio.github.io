@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
   push:                    # tillfälligt: provkörning på förslagsgrenen
     branches: [forslag-malgrupp-och-fragor]
-    paths: [.github/workflows/handlaggningstid.yml]
+    paths: [.github/workflows/handlaggningstid.yml, _verktyg/handlaggningstid.py]
 
 permissions:
   contents: write

@@ -49,6 +49,12 @@ def dagar_i(text):
         r"(?:ca\.?|cirka|omkring|ungefär)\s*(\d{1,3})\s*arbetsdagar", text, re.I)]
 
 
+def meningar(text):
+    """Meningarna som nämner arbetsdagar eller vilken vecka de handlägger, för loggen."""
+    hittade = re.findall(r"[^.!?]{0,200}?(?:arbetsdagar|vecka \d{1,2})[^.!?]{0,200}[.!?]", text)
+    return list(dict.fromkeys(m.strip() for m in hittade))
+
+
 def hamta(url):
     req = urllib.request.Request(url, headers={
         "User-Agent": "Mozilla/5.0 (compatible; vidvystudio.se, veckovis koll av handläggningstid)"})
@@ -84,11 +90,14 @@ def main():
         hittade = {}
         for url in KALLOR:
             try:
-                d = dagar_i(som_text(hamta(url)))
+                text = som_text(hamta(url))
             except Exception as fel:  # en sida som inte svarar får inte stoppa de andra
                 print(f"Kunde inte läsa {url}: {fel}", file=sys.stderr)
                 continue
+            d = dagar_i(text)
             print(f"{url}: {d or 'ingen tid hittad'}")
+            for m in meningar(text):
+                print(f"    {m}")
             if d:
                 hittade[url] = max(d)
         if not hittade:
