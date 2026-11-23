@@ -9,9 +9,9 @@ Körs varje måndag av .github/workflows/handlaggningstid.yml. För hand:
     python3 _verktyg/handlaggningstid.py             hämtar från lantmateriet.se
     python3 _verktyg/handlaggningstid.py --dagar 60  sätter tiden själv
 
-Lantmäteriets sidor anger ibland olika tider (2026-11-23: 45 arbetsdagar på
-startsidan, 60 under vanliga frågor). Då används den längsta, så att sidan
-inte lovar för kort tid. Hittas ingen tid ändras inget och skriptet avslutas
+Tiden hämtas från tre av Lantmäteriets sidor (2026-11-23 sa alla "ca 45
+arbetsdagar" och "ärenden från vecka 37"). Skulle de ange olika tider används
+den längsta, så att sidan inte lovar för kort tid. Hittas ingen tid ändras inget och skriptet avslutas
 med fel, så att GitHub skickar ett mejl om att körningen misslyckades.
 """
 import argparse
