@@ -19,6 +19,8 @@ kund.json (exempel finns i leverans/_verktyg/exempel.json):
                  (under ca 50 MB), de ligger i hemsidans lagring.
     filer        Lista med {"namn": ..., "detalj": ...} (visas vid status "klar").
     nedladdning  {"url": ..., "tjanst": "SwissTransfer", "giltig_till": "...", "losenord": "..."}.
+    omdome       false för att inte be om ett omdöme på Google (valfritt). Annars
+                 visas rutan på färdiga leveranser när OMDOME_URL nedan är ifylld.
 
 Lösenordet till sidan skapas slumpmässigt om det inte anges. Skriptet skriver ut
 adressen, lösenordet och en direktlänk som öppnar sidan utan att kunden skriver
@@ -45,6 +47,10 @@ LOSENORDSMALL = LEVERANS / "_losenord.html"
 SITE = "https://vidvystudio.se"
 STATICRYPT = "staticrypt@3.5.4"
 
+# Länken där kunden skriver ett omdöme om Vidvy Studio på Google. Hämtas från
+# Google-företagsprofilen ("Be om omdömen"). Tom = ingen omdömesruta.
+OMDOME_URL = ""
+
 # Utan tecken som är lätta att blanda ihop (0/o, 1/l/i).
 TECKEN = "abcdefghjkmnpqrstuvwxyz23456789"
 
@@ -52,6 +58,11 @@ LADDA_NER_IKON = (
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
     'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
     '<path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>'
+)
+STJARNA_IKON = (
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
+    '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/></svg>'
 )
 MEJL_IKON = (
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
@@ -199,6 +210,7 @@ def bygg_sida(cfg, mapp):
         "{{MEDIA}}": media_html(cfg.get("media", []), mapp),
         "{{HUVUDRUTA}}": huvudruta(cfg),
         "{{FAKTA}}": fakta(cfg),
+        "{{OMDOME}}": omdome(cfg),
         "{{AR}}": str(date.today().year),
     }
     sida = MALL.read_text(encoding="utf-8")
@@ -210,6 +222,25 @@ def bygg_sida(cfg, mapp):
     if "{{" in sida:
         sys.exit("Mallen har platshållare kvar: " + sida[sida.index("{{"):][:40])
     return sida
+
+
+def omdome(cfg):
+    if cfg["status"] != "klar" or cfg.get("omdome") is False:
+        return ""
+    if not OMDOME_URL:
+        print("Obs: OMDOME_URL är tom, så sidan får ingen omdömesruta.", file=sys.stderr)
+        return ""
+    return (
+        '        <section class="lev-review" aria-labelledby="omdome">\n'
+        '            <div>\n'
+        '                <h2 id="omdome">Blev du nöjd?</h2>\n'
+        "                <p>Ett kort omdöme på Google betyder mycket för ett litet företag som mitt. "
+        "Det tar en minut och hjälper andra att hitta mig.</p>\n"
+        "            </div>\n"
+        f'            <a class="lev-button lev-button-green" href="{e(OMDOME_URL)}" target="_blank" rel="noopener noreferrer">'
+        f"{STJARNA_IKON}Skriv ett omdöme på Google</a>\n"
+        "        </section>"
+    )
 
 
 def kryptera(okrypterad, mapp, losenord, rubrik):
